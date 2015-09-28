@@ -19,4 +19,9 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'threedaysapp.views.index'),
+    url(r'^main/$', 'threedaysapp.views.main'),
+    url(r'^main/callback/$', 'threedaysapp.views.callback'),
+    url(r'^main/auth/$', 'threedaysapp.views.auth'),
+    url(r'^main/done/$', view='threedaysapp.views.done', name='oauth_done'),
 ]

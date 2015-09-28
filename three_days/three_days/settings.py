@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'threedaysapp',
+    'markdown_deux',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'three_days.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/cygdrive/c/Users/Austin/Documents/Northwestern/3days/three_days/three_days/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,3 +106,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# API KEYS
+FOURSQUARE_CLIENT_ID = 'ILHWMSLB5MTWPEVMKBKFH3WIJRQSPW5H4UT04JV3TTDPY2BE'
+FOURSQUARE_CLIENT_SECRET = 'VK300PW2W2EYGXP0KX5L3GTHDXF1LNXTN4P2V2XZKF3OASAU'
