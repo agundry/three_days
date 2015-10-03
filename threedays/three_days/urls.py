@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^main/callback/$', 'threedaysapp.views.callback'),
     url(r'^main/auth/$', 'threedaysapp.views.auth'),
     url(r'^main/done/$', view='threedaysapp.views.done', name='oauth_done'),
+    url(r'^explore/$', view='threedaysapp.views.get_explore', name='get_explore'),
 ]

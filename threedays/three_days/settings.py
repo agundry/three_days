@@ -57,7 +57,7 @@ ROOT_URLCONF = 'three_days.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/cygdrive/c/Users/Austin/Documents/Northwestern/3days/three_days/three_days/templates'],
+        'DIRS': ['/Users/Austin/Documents/Northwestern/3days/threedays/three_days/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
