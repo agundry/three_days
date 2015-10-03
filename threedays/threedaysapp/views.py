@@ -10,9 +10,8 @@ from django.shortcuts import render_to_response
 from django.core.context_processors import csrf
 from .forms import ExploreForm
 from django.template import RequestContext
+from secrets import *
 
-FOURSQUARE_CLIENT_ID = 'ILHWMSLB5MTWPEVMKBKFH3WIJRQSPW5H4UT04JV3TTDPY2BE'
-FOURSQUARE_CLIENT_SECRET = 'VK300PW2W2EYGXP0KX5L3GTHDXF1LNXTN4P2V2XZKF3OASAU'
 access_token_url = 'https://foursquare.com/oauth2/access_token'
 auth_url = 'https://foursquare.com/oauth2/authorize'
 redirect_url = 'http://127.0.0.1:8000/main/callback'
