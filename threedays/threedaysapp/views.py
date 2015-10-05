@@ -102,7 +102,13 @@ def get_explore(self, **kwargs):
     output['HoursA'] = POIs[0]['venue']['hours']['status']
     output['HoursB'] = POIs[1]['venue']['hours']['status']
     output['HoursC'] = POIs[2]['venue']['hours']['status']
+    output['AddressA'] = POIs[0]['venue']['location']['address']
+    output['AddressB'] = POIs[1]['venue']['location']['address']
+    output['AddressC'] = POIs[2]['venue']['location']['address']
+    output['WebsiteA'] = POIs[0]['venue']['url']
+    output['WebsiteB'] = POIs[1]['venue']['url']
+    output['WebsiteC'] = POIs[2]['venue']['url']
 
 
 
-    return render(self, 'explore.html', output)
+    return render(self, 'done.html', output)
