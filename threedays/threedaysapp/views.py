@@ -1,13 +1,12 @@
 import json
 import urllib
-import requests
 import urllib2
+import requests
+import oauth2
 from django.core.urlresolvers import reverse
-from urlparse import urlparse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import render_to_response
-from django.core.context_processors import csrf
 from .forms import ExploreForm
 from django.template import RequestContext
 from secrets import *
@@ -112,3 +111,32 @@ def get_explore(self, **kwargs):
 
 
     return render(self, 'done.html', output)
+
+def yelpexplore(self, **kwargs):
+    base_url = 'api.yelp.com'
+    search_path = '/v2/search/'
+    url_params = {}
+    url_params['term'] = 'tacos'
+    url_params['location'] = 'San Francisco, CA'
+    url = 'http://{0}{1}?'.format(base_url, urllib.quote(search_path.encode('utf8')))
+    consumer = oauth2.Consumer(YELP_CONSUMER_KEY, YELP_CONSUMER_SECRET)
+    oauth_request = oauth2.Request(method="GET", url=url, parameters=url_params)
+    oauth_request.update(
+        {
+            'oauth_nonce': oauth2.generate_nonce(),
+            'oauth_timestamp': oauth2.generate_timestamp(),
+            'oauth_token': YELP_TOKEN,
+            'oauth_consumer_key': YELP_CONSUMER_KEY
+        }
+    )
+    token=oauth2.Token(YELP_TOKEN, YELP_TOKEN_SECRET)
+    oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
+    signed_url = oauth_request.to_url()
+
+    connection = urllib2.urlopen(signed_url, None)
+    try:
+        response = json.loads(connection.read())
+    finally:
+        connection.close()
+
+    return render(self, 'index.html', response)
