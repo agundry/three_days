@@ -7,9 +7,10 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import render_to_response
-from .forms import ExploreForm
+from models import User
 from django.template import RequestContext
 from secrets import *
+from django.contrib.auth import authenticate
 
 access_token_url = 'https://foursquare.com/oauth2/access_token'
 auth_url = 'https://foursquare.com/oauth2/authorize'
@@ -44,14 +45,6 @@ def callback(request):
                'redirect_uri' : redirect_url,
                'code' : code}
     response = requests.post(access_token_url,params)
-    # data = urllib.urlencode( params )
-    # req = urllib2.Request( access_token_url, data.encode('utf-8') )
-    # req = urllib2.Request( access_token_url, data)
-
-    # request the access_token
-    # response = urllib2.urlopen( req )
-    # print(response)
-    # access_token = json.loads( response.read( ).decode('utf-8') )
     access_token = response.json()
     access_token = access_token['access_token']
 
@@ -140,3 +133,37 @@ def yelpexplore(self, **kwargs):
         connection.close()
 
     return render(self, 'index.html', response)
+
+def loadProfile( self ):
+    return render(self, 'profile.html')
+
+def showLogin( self ):
+    return render(self, 'showLogin.html')
+
+def login( self ):
+    params = { 'username' : self.POST['username'],
+               'first_name' : self.POST['first_name'],
+               'last_name' : self.POST['last_name'],
+               'email' : self.POST['email'],
+               'password' : self.POST['password']}
+
+    new_user = User.objects.create_user(params['username'],
+                                        params['first_name'],
+                                        params['last_name'],
+                                        params['email'],
+                                        params['password'],)
+
+    return render(self, 'showLogin.html')
+
+def checkLogin( self ):
+    user = authenticate(username=self.POST['username'], password=self.POST['password'])
+    valid_auth = False
+    if user is not None:
+        # the password verified for the user
+        valid_auth = True
+        print("User is valid, active and authenticated")
+    else:
+        # the authentication system was unable to verify the username and password
+        print("The username and password were incorrect.")
+
+    return render(self, 'showLogin.html', {'username': self.POST.get('username', 'INVALID'), 'valid': valid_auth})

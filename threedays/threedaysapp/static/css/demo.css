@@ -4,19 +4,11 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-.intro-search {
-    width: 400px;
-    margin: 0 0 10px 0;
-    padding: 2px;
-}
-
-#page-top > header > div > div > div > div {
-    background-color: rgba(255,255,255, 0.4);
-    padding: 10px 0;
-}
-
-#page-top > header > div > div > div > div > form > input {
-    color: black;
+#page-top > header > div > div > div > div > div:nth-child(4) > a > img,
+#page-top > header > div > div > div > div > div:nth-child(6) > a > img
+{
+    height: 190px;
+    width: 300px;
 }
 
 .intro-city {
@@ -38,7 +30,7 @@ body {
     height: 100%;
     font-family: 'Dosis', sans-serif,"Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #fff;
-    background-color: #000;
+    background-color: #f6f6f6;
 }
 
 html {
@@ -118,7 +110,7 @@ a:focus {
 }
 
 .navbar-custom a {
-    color: #fff;
+    color: black;
 }
 
 .navbar-custom .nav li a {
@@ -169,15 +161,12 @@ a:focus {
     }
 }
 
-.intro {
+.profile {
     display: table;
     width: 100%;
     height: auto;
     padding: 100px 0;
     text-align: center;
-    color: #fff;
-    background: url(http://content.paulreiffer.com/wp-content/uploads/2014/05/Huvafen-Fushi-Sunrise-Dawn-Maldives-Overwater-Spa-Paul-Reiffer-Professional-Landscape-Photograph-Photographer-Pink-Blue-Sea-Ocean-Jetty-Wooden-Per-Aquum@2x.jpg) no-repeat bottom center scroll;
-    background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -189,8 +178,9 @@ a:focus {
     vertical-align: middle;
 }
 
-.intro .intro-body .brand-heading {
+.profile .profile-body .brand-heading {
     font-size: 30px;
+    color: black;
 }
 
 .intro .intro-body .intro-text {
@@ -252,7 +242,7 @@ a:focus {
     -moz-animation-timing-function: linear;
 }
 
-@-webkit-keyframes pulse {
+@-webkit-keyframes pulse {    
     0% {
         -webkit-transform: scale(1);
         transform: scale(1);
@@ -269,7 +259,7 @@ a:focus {
     }
 }
 
-@-moz-keyframes pulse {
+@-moz-keyframes pulse {    
     0% {
         -moz-transform: scale(1);
         transform: scale(1);

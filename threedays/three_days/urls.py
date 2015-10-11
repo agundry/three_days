@@ -26,4 +26,8 @@ urlpatterns = [
     url(r'^main/done/$', view='threedaysapp.views.done', name='oauth_done'),
     url(r'^explore/$', view='threedaysapp.views.get_explore', name='get_explore'),
     url(r'^yelpexplore/$', view='threedaysapp.views.yelpexplore', name='yelpexplore'),
+    url(r'^loadProfile/$', view='threedaysapp.views.loadProfile', name='loadProfile'),
+    url(r'^login/$', view='threedaysapp.views.login', name='login'),
+    url(r'^showLogin/$', view='threedaysapp.views.showLogin', name='showLogin'),
+    url(r'^checkLogin/$', view='threedaysapp.views.checkLogin', name='checkLogin'),
 ]
