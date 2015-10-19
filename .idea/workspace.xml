@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37316b6e-c3bc-430d-819f-245d9767d918" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/threedays/three_days/templates/chicago.html" afterPath="$PROJECT_DIR$/threedays/three_days/templates/chicago.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/threedays/three_days/templates/index.html" afterPath="$PROJECT_DIR$/threedays/three_days/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/threedays/three_days/urls.py" afterPath="$PROJECT_DIR$/threedays/three_days/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/threedays/threedaysapp/views.py" afterPath="$PROJECT_DIR$/threedays/threedaysapp/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/threedays/three_days/settings.py" afterPath="$PROJECT_DIR$/threedays/three_days/settings.py" />
     </list>
     <ignored path="3days.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,10 +77,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/threedays/three_days/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.55409837">
+              <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/threedays/threedaysapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.83278686">
+            <state vertical-scroll-proportion="0.0">
               <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -139,7 +146,6 @@
         <option value="$PROJECT_DIR$/threedays/threedaysapp/static/css/demo.css" />
         <option value="$PROJECT_DIR$/threedays/three_days/templates/accountLogin.html" />
         <option value="$PROJECT_DIR$/threedays/threedaysapp/models.py" />
-        <option value="$PROJECT_DIR$/threedays/three_days/settings.py" />
         <option value="$PROJECT_DIR$/threedays/threedaysapp/backends.py" />
         <option value="$PROJECT_DIR$/threedays/three_days/templates/showLogin.html" />
         <option value="$PROJECT_DIR$/threedays/three_days/templates/profile.html" />
@@ -147,6 +153,7 @@
         <option value="$PROJECT_DIR$/threedays/three_days/templates/index.html" />
         <option value="$PROJECT_DIR$/threedays/threedaysapp/views.py" />
         <option value="$PROJECT_DIR$/threedays/three_days/templates/chicago.html" />
+        <option value="$PROJECT_DIR$/threedays/three_days/settings.py" />
       </list>
     </option>
   </component>
@@ -842,14 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/threedays/three_days/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="110" selection-start-line="115" selection-start-column="110" selection-end-line="115" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/contrib/auth/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -956,11 +955,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/threedays/threedaysapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83278686">
+        <state vertical-scroll-proportion="0.0">
           <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threedays/three_days/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55409837">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
