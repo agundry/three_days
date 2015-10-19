@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Login</title>
+</head>
+<body>
+<p>Hi, please create an account. </p>
+<form action="/login/" method="post">
+    {% csrf_token %}
+    <input id="username" type="text" name="username" value="username">
+    <input id="first_name" type="text" name="first_name" value="first_name">
+    <input id="last_name" type="text" name="last_name" value="last_name">
+    <input id="email" type="text" name="email" value="email">
+    <input id="password" type="text" name="password" value="password">
+    <input type="submit" value="OK">
+</form>
+<p>If you already have an account, please log in.</p>
+<form action="/checkLogin/" method="post">
+    {% csrf_token %}
+    <input id="auth_username" type="text" name="username" value="username">
+    <input id="auth_password" type="password" name="password" value="password">
+    <input type="submit" value="OK">
+</form>
+{% if valid == None %}
+<h3>Login</h3>
+{% elif valid == True %}
+<h3>{{ username }} is logged in successfully</h3>
+{% else %}
+<h3>Error, username and/or password was invalid</h3>
+{% endif %}
+<a href="../logout/">Logout</a>
+</body>
+</html>

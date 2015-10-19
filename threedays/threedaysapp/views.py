@@ -1,16 +1,16 @@
 import json
 import urllib
-import requests
 import urllib2
+import requests
+import oauth2
 from django.core.urlresolvers import reverse
-from urlparse import urlparse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import render_to_response
-from django.core.context_processors import csrf
-from .forms import ExploreForm
+from models import User
 from django.template import RequestContext
 from secrets import *
+from django.contrib.auth import authenticate
 
 access_token_url = 'https://foursquare.com/oauth2/access_token'
 auth_url = 'https://foursquare.com/oauth2/authorize'
@@ -45,14 +45,6 @@ def callback(request):
                'redirect_uri' : redirect_url,
                'code' : code}
     response = requests.post(access_token_url,params)
-    # data = urllib.urlencode( params )
-    # req = urllib2.Request( access_token_url, data.encode('utf-8') )
-    # req = urllib2.Request( access_token_url, data)
-
-    # request the access_token
-    # response = urllib2.urlopen( req )
-    # print(response)
-    # access_token = json.loads( response.read( ).decode('utf-8') )
     access_token = response.json()
     access_token = access_token['access_token']
 
@@ -112,3 +104,97 @@ def get_explore(self, **kwargs):
 
 
     return render(self, 'done.html', output)
+
+def yelpexplore(self, **kwargs):
+    base_url = 'api.yelp.com'
+    search_path = '/v2/search/'
+    url_params = {}
+    url_params['term'] = 'tacos'
+    url_params['location'] = 'San Francisco, CA'
+    url = 'http://{0}{1}?'.format(base_url, urllib.quote(search_path.encode('utf8')))
+    consumer = oauth2.Consumer(YELP_CONSUMER_KEY, YELP_CONSUMER_SECRET)
+    oauth_request = oauth2.Request(method="GET", url=url, parameters=url_params)
+    oauth_request.update(
+        {
+            'oauth_nonce': oauth2.generate_nonce(),
+            'oauth_timestamp': oauth2.generate_timestamp(),
+            'oauth_token': YELP_TOKEN,
+            'oauth_consumer_key': YELP_CONSUMER_KEY
+        }
+    )
+    token=oauth2.Token(YELP_TOKEN, YELP_TOKEN_SECRET)
+    oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
+    signed_url = oauth_request.to_url()
+
+    connection = urllib2.urlopen(signed_url, None)
+    try:
+        response = json.loads(connection.read())
+    finally:
+        connection.close()
+
+    return render(self, 'index.html', response)
+
+def yelpThreePlaces(self, **kwargs):
+    base_url = 'api.yelp.com'
+    search_path = '/v2/search/'
+
+    url_params = {}
+    url_params['limit'] = 3
+    url_params['sort'] = 2
+    url_params['location'] = 'Chicago, IL'
+    url = 'http://{0}{1}?'.format(base_url, urllib.quote(search_path.encode('utf8')))
+    consumer = oauth2.Consumer(YELP_CONSUMER_KEY, YELP_CONSUMER_SECRET)
+    oauth_request = oauth2.Request(method="GET", url=url, parameters=url_params)
+    oauth_request.update(
+        {
+            'oauth_nonce': oauth2.generate_nonce(),
+            'oauth_timestamp': oauth2.generate_timestamp(),
+            'oauth_token': YELP_TOKEN,
+            'oauth_consumer_key': YELP_CONSUMER_KEY
+        }
+    )
+    token=oauth2.Token(YELP_TOKEN, YELP_TOKEN_SECRET)
+    oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
+    signed_url = oauth_request.to_url()
+
+    connection = urllib2.urlopen(signed_url, None)
+    try:
+        response = json.loads(connection.read())
+    finally:
+        connection.close()
+
+    return render(self, 'chicago.html', response)
+
+def loadProfile( self ):
+    return render(self, 'profile.html')
+
+def showLogin( self ):
+    return render(self, 'showLogin.html')
+
+def login( self ):
+    params = { 'username' : self.POST['username'],
+               'first_name' : self.POST['first_name'],
+               'last_name' : self.POST['last_name'],
+               'email' : self.POST['email'],
+               'password' : self.POST['password']}
+
+    new_user = User.objects.create_user(params['username'],
+                                        params['first_name'],
+                                        params['last_name'],
+                                        params['email'],
+                                        params['password'],)
+
+    return render(self, 'showLogin.html')
+
+def checkLogin( self ):
+    user = authenticate(username=self.POST['username'], password=self.POST['password'])
+    valid_auth = False
+    if user is not None:
+        # the password verified for the user
+        valid_auth = True
+        print("User is valid, active and authenticated")
+    else:
+        # the authentication system was unable to verify the username and password
+        print("The username and password were incorrect.")
+
+    return render(self, 'showLogin.html', {'username': self.POST.get('username', 'INVALID'), 'valid': valid_auth})

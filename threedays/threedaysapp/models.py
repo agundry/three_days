@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 from datetime import datetime
+from django.conf import settings
 
 # User managers
 class UserManager(BaseUserManager):
@@ -30,12 +31,5 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email']
 
 class UserPreferences(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     art = models.IntegerField(default=0)
-    art = models.IntegerField(default=0)
-    art = models.IntegerField(default=0)
-    art = models.IntegerField(default=0)
-    art = models.IntegerField(default=0)
-    art = models.IntegerField(default=0)
-
-
