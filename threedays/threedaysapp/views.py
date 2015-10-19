@@ -141,7 +141,8 @@ def yelpThreePlaces(self, **kwargs):
     url_params = {}
     url_params['limit'] = 3
     url_params['sort'] = 2
-    url_params['location'] = 'Chicago, IL'
+    url_params['location'] = str(self.GET['location']) if 'location' in self.GET else 'Chicago, IL'
+
     url = 'http://{0}{1}?'.format(base_url, urllib.quote(search_path.encode('utf8')))
     consumer = oauth2.Consumer(YELP_CONSUMER_KEY, YELP_CONSUMER_SECRET)
     oauth_request = oauth2.Request(method="GET", url=url, parameters=url_params)

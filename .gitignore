@@ -4,3 +4,4 @@ env
 __pycache__
 
 threedays/threedaysapp/secrets.py
+.idea/workspace.xml
