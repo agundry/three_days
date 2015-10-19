@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load staticfiles %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,6 +17,8 @@
 
     <!-- Custom CSS -->
     <link href="{% static "css/demo.css" %}" rel="stylesheet">
+    <link href="css/layout.css" rel="stylesheet">
+    <link href="css/profile.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -34,7 +36,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="demo.html">
+            <a class="navbar-brand page-scroll" href="index.html">
                 3 Days
             </a>
         </div>
@@ -42,7 +44,7 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
                 <li class="hidden">
-                    <a href="demo.html"></a>
+                    <a href="index.html"></a>
                 </li>
                 <li>
                     <a class="page-scroll" href="explore.html">Explore</a>
@@ -62,47 +64,51 @@
     <div class="profile-body">
         <div class="container">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1 text-center">
                 <h1 class="brand-heading">CHOOSE YOUR PROFILE</h1>
-
-                <div class="col-md-4">
-                    <a class="intro-city" href="/main/">
-                        <img src="https://static.pexels.com/photos/1248/romantic-sun-drink-date.jpg" alt="romantic">
-                        <label>BAE</label>
-                    </a>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="col-md-4">
+                        <a class="profile-box" href="/main/">
+                            <img src="https://static.pexels.com/photos/1248/romantic-sun-drink-date.jpg" alt="romantic" class="img-responsive">
+                            <label>BAE</label>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="profile-box" href="chicago.html">
+                            <img src="http://www.mstarinsurance.com/files/2013/06/Life-Insurance-6.24.jpg" alt="family" class="img-responsive">
+                            <label>FAM</label>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="profile-box" href="chicago.html">
+                            <img src="http://41.media.tumblr.com/tumblr_m3rzbdVXLI1qfji2jo1_500.jpg" alt="friends" class="img-responsive">
+                            <label>SQUAD</label>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <a class="intro-city" href="chicago.html">
-                        <img src="http://www.mstarinsurance.com/files/2013/06/Life-Insurance-6.24.jpg" alt="family">
-                        <label>FAM</label>
-                    </a>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="col-md-4">
+                        <a class="profile-box" href="/main/">
+                            <img src="http://www.joeboard.com/wp-content/uploads/2014/08/budget-travel-piggy-bank.png" alt="budget" class="img-responsive">
+                            <label>BROKE</label>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="profile-box" href="chicago.html">
+                            <img src="http://imgfave-herokuapp-com.global.ssl.fastly.net/image_cache/1333240270572500.jpg" alt="hipster" class="img-responsive">
+                            <label>HIPSTER</label>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="profile-box" href="chicago.html">
+                            <img src="http://www.crossfitmagnolia.com/wp-content/uploads/2014/11/cliff-jumping.jpg" alt="adventurous" class="img-responsive">
+                            <label>YOLO</label>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <a class="intro-city" href="chicago.html">
-                        <img src="http://www.northwesternflipside.com/wp-content/uploads/2014/04/beach-friends-party-summer-Favim.com-487213.jpg" alt="friends">
-                        <label>SQUAD</label>
-                    </a>
-                </div>
-
-                <div class="col-md-4">
-                    <a class="intro-city" href="/main/">
-                        <img src="http://www.joeboard.com/wp-content/uploads/2014/08/budget-travel-piggy-bank.png" alt="budget">
-                        <label>BROKE</label>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a class="intro-city" href="chicago.html">
-                        <img src="http://40.media.tumblr.com/caef3b939fddf600e57a66978d8a5c6d/tumblr_nacsc5coza1qh676ro1_500.jpg" alt="hipster">
-                        <label>HIPSTER</label>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a class="intro-city" href="chicago.html">
-                        <img src="http://www.crossfitmagnolia.com/wp-content/uploads/2014/11/cliff-jumping.jpg" alt="adventurous">
-                        <label>YOLO</label>
-                    </a>
-                </div>
-
             </div>
         </div>
     </div>
