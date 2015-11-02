@@ -31,4 +31,5 @@ urlpatterns = [
     url(r'^showLogin/$', view='threedaysapp.views.showLogin', name='showLogin'),
     url(r'^checkLogin/$', view='threedaysapp.views.checkLogin', name='checkLogin'),
     url(r'^chooseThree/$', view='threedaysapp.views.yelpThreePlaces', name='yelpThreePlaces'),
+    url(r'^chooseOne/$', view='threedaysapp.views.yelpOnePlace', name='yelpOnePlace'),
 ]

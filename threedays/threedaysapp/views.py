@@ -5,6 +5,7 @@ import requests
 import oauth2
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from models import User
@@ -140,7 +141,6 @@ def yelpThreePlaces(self, **kwargs):
 
     url_params = {}
     url_params['limit'] = 3
-    url_params['sort'] = 2
     url_params['location'] = str(self.GET['location']) if 'location' in self.GET else 'Chicago, IL'
 
     url = 'http://{0}{1}?'.format(base_url, urllib.quote(search_path.encode('utf8')))
@@ -165,6 +165,41 @@ def yelpThreePlaces(self, **kwargs):
         connection.close()
 
     return render(self, 'chicago.html', response)
+
+def yelpOnePlace(self, **kwargs):
+    base_url = 'api.yelp.com'
+    search_path = '/v2/search/'
+
+    url_params = {}
+    url_params['limit'] = 1
+    url_params['location'] = str(self.GET['location']) if 'location' in self.GET else 'Chicago, IL'
+    if 'category_filter' in self.GET:
+        url_params['category_filter'] = str(self.GET['category_filter'])
+    if 'offset' in self.GET:
+        url_params['offset'] = str(self.GET['offset'])
+
+    url = 'http://{0}{1}?'.format(base_url, urllib.quote(search_path.encode('utf8')))
+    consumer = oauth2.Consumer(YELP_CONSUMER_KEY, YELP_CONSUMER_SECRET)
+    oauth_request = oauth2.Request(method="GET", url=url, parameters=url_params)
+    oauth_request.update(
+        {
+            'oauth_nonce': oauth2.generate_nonce(),
+            'oauth_timestamp': oauth2.generate_timestamp(),
+            'oauth_token': YELP_TOKEN,
+            'oauth_consumer_key': YELP_CONSUMER_KEY
+        }
+    )
+    token=oauth2.Token(YELP_TOKEN, YELP_TOKEN_SECRET)
+    oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
+    signed_url = oauth_request.to_url()
+
+    connection = urllib2.urlopen(signed_url, None)
+    try:
+        response = json.loads(connection.read())
+    finally:
+        connection.close()
+
+    return HttpResponse(json.dumps(response), content_type="application/json")
 
 def loadProfile( self ):
     return render(self, 'profile.html')

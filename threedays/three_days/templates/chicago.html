@@ -23,6 +23,8 @@
     <link href='https://fonts.googleapis.com/css?family=Dosis:400,300,500,600,700,200,800' rel='stylesheet' type='text/css'>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static "js/threedays.js" %}"></script>
 
 </head>
 
@@ -60,7 +62,7 @@
 
 <header class="place">
     <div class="place-body">
-        <div class="container">
+        <div class="container" id="responseContainer">
             <div class="row text-center">
                 <h1 class="brand-heading">CHOOSE THE PLACE YOU WANT TO GO</h1>
             </div>
@@ -71,31 +73,58 @@
                             <figure><img src="{{ businesses.0.image_url }}" alt="yelp image" class="img responsive"></figure>
                             <figcaption>
                                 <h3>{{ businesses.0.name }}</h3>
-                                <p>Category: {{ businesses.0.categories.0.0 }}</p>
+                                <p>Category: {{ businesses.0.categories.0.1 }}</p>
                                 <p class="description">{{ businesses.0.snippet_text }}</p>
                             </figcaption>
                         </a>
+                        <div class="text-center">
+                            <button class="button" onclick="find_a_place(this, '#responseContainer', '{{ businesses.0.categories.0.1 }}')" style="color: black;">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </div>
                     <div class="col-md-4 bg-hover">
                         <a class="place-box" href="{{ businesses.1.url }}">
                             <figure><img src="{{ businesses.1.image_url }}" alt="yelp image" class="img responsive"></figure>
                             <figcaption>
                                 <h3>{{ businesses.1.name }}</h3>
-                                <p>Category: {{ businesses.1.categories.0.0 }}</p>
+                                <p>Category: {{ businesses.1.categories.0.1 }}</p>
                                 <p class="description">{{ businesses.1.snippet_text }}</p>
                             </figcaption>
                         </a>
+                        <div class="text-center">
+                            <button class="button" onclick="find_a_place(this, '#responseContainer','{{ businesses.1.categories.0.1 }}')" style="color: black;">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </div>
                     <div class="col-md-4 bg-hover">
                         <a class="place-box" href="{{ businesses.2.url }}">
                             <figure><img src="{{ businesses.2.image_url }}" alt="yelp image" class="img responsive"></figure>
                             <figcaption>
                                 <h3>{{ businesses.2.name }}</h3>
-                                <p>Category: {{ businesses.2.categories.0.0 }}</p>
+                                <p>Category: {{ businesses.2.categories.0.1 }}</p>
                                 <p class="description">{{ businesses.2.snippet_text }}</p>
                             </figcaption>
                         </a>
+                        <div class="text-center">
+                            <button class="button" onclick="find_a_place(this, '#responseContainer', '{{ businesses.2.categories.0.1 }}')" style="color: black;">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-left" id="secondTier">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-left" id="thirdTier">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-left" id="fourthTier">
                 </div>
             </div>
     </div>
