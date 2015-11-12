@@ -5,3 +5,4 @@ __pycache__
 
 threedays/threedaysapp/secrets.py
 .idea/workspace.xml
+three_days/settings.py
