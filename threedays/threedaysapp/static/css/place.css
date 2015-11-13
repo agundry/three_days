@@ -8,6 +8,13 @@ figure {
     margin: 10px;
 }
 
+.yelp-img img{
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+}
+
 .description {
     font-size: 1em;
     margin-top: -1em;
@@ -24,11 +31,8 @@ figure {
     background-color: white;
 }
 
-.place-box img{
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
-    margin: auto;
+.outer-box {
+    width: 100&
 }
 
 .place {
@@ -64,3 +68,28 @@ figure {
     }
 }
 
+#itineraryButton {
+    margin-bottom: 3em;
+    border-radius: 0.5em;
+    border-color: transparent;
+    font-size: 1.5em;
+    text-transform: lowercase;
+}
+
+.info-icon {
+    text-align: right;
+    display: none;
+}
+
+.info-icon {
+    margin: 10px 0;
+}
+
+.info-icon a {
+    color: black;
+    transition: 0.5s;
+}
+
+.info-icon a:hover {
+    color: grey;
+}

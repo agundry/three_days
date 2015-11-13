@@ -18,6 +18,7 @@
     <!-- Custom CSS -->
     <link href="{% static "css/layout.css" %}" rel="stylesheet">
     <link href="{% static "css/place.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.css" %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Dosis:400,300,500,600,700,200,800' rel='stylesheet' type='text/css'>
@@ -66,54 +67,55 @@
             <div class="row text-center">
                 <h1 class="brand-heading">CHOOSE THE PLACE YOU WANT TO GO</h1>
                 <button class="btn btn-primary" type="button" id="itineraryButton">
-                    Itinerary <span class="badge" id="itineraryCount">0</span>
+                    <i class="fa fa-calendar-check-o"></i> Show Itinerary <span class="badge" id="itineraryCount">0</span>
                 </button>
             </div>
             <div class="row" id="round0">
                 <div class="col-md-12 text-left">
                     <div class="col-md-4 bg-hover" data-name="{{ businesses.0.name }}" data-yelpurl="{{ businesses.0.url }}" data-imageurl="{{ businesses.0.image_url }}" data-category="{{ businesses.0.categories.0.1 }}">
-                        <a class="place-box" href="{{ businesses.0.url }}">
-                            <figure class="yelp-img"><img src="{{ businesses.0.image_url }}" alt="yelp image" class="img-responsive"></figure>
-                            <figcaption>
-                                <h3>{{ businesses.0.name }}</h3>
-                                <p>Category: {{ businesses.0.categories.0.1 }}</p>
-                                <p class="description">{{ businesses.0.snippet_text }}</p>
-                            </figcaption>
-                        </a>
-                        <div class="text-center">
-                            <button class="button choiceButton" style="color: black;">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            </button>
+                        <div class="outer-box">
+                            <a class="place-box choiceButton" href="#">
+                                <figure class="yelp-img"><img src="{{ businesses.0.image_url }}" alt="yelp image" class="img-responsive"></figure>
+                                <figcaption>
+                                    <h3>{{ businesses.0.name }}</h3>
+                                    <p><i class="fa fa-tag"></i> {{ businesses.0.categories.0.1 }}</p>
+                                    <p class="description">{{ businesses.0.snippet_text }}</p>
+                                </figcaption>
+                            </a>
+                            <div class="info-icon text-right">
+                                <a href="{{ businesses.0.url }}">or find out more <i class="fa fa-external-link-square"></i></a>
+                            </div>
                         </div>
                     </div>
+
                     <div class="col-md-4 bg-hover" data-name="{{ businesses.1.name }}" data-yelpurl="{{ businesses.1.url }}" data-imageurl="{{ businesses.1.image_url }}" data-category="{{ businesses.1.categories.0.1 }}">
-                        <a class="place-box" href="{{ businesses.1.url }}">
-                            <figure class="yelp-img"><img src="{{ businesses.1.image_url }}" alt="yelp image" class="img-responsive"></figure>
-                            <figcaption>
-                                <h3>{{ businesses.1.name }}</h3>
-                                <p>Category: {{ businesses.1.categories.0.1 }}</p>
-                                <p class="description">{{ businesses.1.snippet_text }}</p>
-                            </figcaption>
-                        </a>
-                        <div class="text-center">
-                            <button class="button choiceButton" style="color: black;">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            </button>
+                        <div class="outer-box">
+                            <a class="place-box choiceButton" href="#">
+                                <figure class="yelp-img"><img src="{{ businesses.1.image_url }}" alt="yelp image" class="img-responsive"></figure>
+                                <figcaption>
+                                    <h3>{{ businesses.1.name }}</h3>
+                                    <p><i class="fa fa-tag"></i> {{ businesses.1.categories.0.1 }}</p>
+                                    <p class="description">{{ businesses.1.snippet_text }}</p>
+                                </figcaption>
+                            </a>
+                            <div class="info-icon text-right">
+                                <a href="{{ businesses.1.url }}">or find out more <i class="fa fa-external-link-square"></i></a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4 bg-hover" data-name="{{ businesses.2.name }}" data-yelpurl="{{ businesses.2.url }}" data-imageurl="{{ businesses.2.image_url }}" data-category="{{ businesses.2.categories.0.1 }}">
-                        <a class="place-box" href="{{ businesses.2.url }}">
-                            <figure class="yelp-img"><img src="{{ businesses.2.image_url }}" alt="yelp image" class="img-responsive"></figure>
-                            <figcaption>
-                                <h3>{{ businesses.2.name }}</h3>
-                                <p>Category: {{ businesses.2.categories.0.1 }}</p>
-                                <p class="description">{{ businesses.2.snippet_text }}</p>
-                            </figcaption>
-                        </a>
-                        <div class="text-center">
-                            <button class="button choiceButton" style="color: black;">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            </button>
+                        <div class="outer-box">
+                            <a class="place-box choiceButton" href="#">
+                                <figure class="yelp-img"><img src="{{ businesses.2.image_url }}" alt="yelp image" class="img-responsive"></figure>
+                                <figcaption>
+                                    <h3>{{ businesses.2.name }}</h3>
+                                    <p><i class="fa fa-tag"></i> {{ businesses.2.categories.0.1 }}</p>
+                                    <p class="description">{{ businesses.2.snippet_text }}</p>
+                                </figcaption>
+                            </a>
+                            <div class="info-icon text-right">
+                                <a href="{{ businesses.2.url }}">or find out more <i class="fa fa-external-link-square"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -31,6 +31,9 @@ figure {
     background-color: white;
 }
 
+.outer-box {
+    width: 100&
+}
 
 .place {
     display: table;
@@ -65,3 +68,28 @@ figure {
     }
 }
 
+#itineraryButton {
+    margin-bottom: 3em;
+    border-radius: 0.5em;
+    border-color: transparent;
+    font-size: 1.5em;
+    text-transform: lowercase;
+}
+
+.info-icon {
+    text-align: right;
+    display: none;
+}
+
+.info-icon {
+    margin: 10px 0;
+}
+
+.info-icon a {
+    color: black;
+    transition: 0.5s;
+}
+
+.info-icon a:hover {
+    color: grey;
+}
