@@ -1,9 +1,13 @@
 $(document).ready( function() {
 
 	$(document).on('click', ".choiceButton", function() {
+		counter++;
+		$("#itineraryCount").html(counter);
 		var parentData = $(this).parent().parent().get(0).dataset;
 		categoryDict[parentData.category] = (categoryDict[parentData.category] || 0) + 1;
-		three_new_places("#responseContainer", parentData.category);
+		if (counter <= 9) {
+			three_new_places("#responseContainer", parentData.category);
+		}
 		add_to_itinerary(parentData.name, parentData.yelpurl, parentData.imageurl);
 	});
 
@@ -32,7 +36,6 @@ var counter = 0;
 var offset = 2
 
 function three_new_places(divId, category){
-	counter++;
 	offset+=2;
     $.ajax({
         url: "http://127.0.0.1:8000/chooseOne/?location=Chicago, IL&offset="+(categoryDict[category] || 0).toString() +"&category_filter="+category,
@@ -46,7 +49,6 @@ function three_new_places(divId, category){
 		            // console.log(data2);
 		            // THIS WILL HIDE DIVS ITERATIVELY
 		            $("#round" + (counter -1)).hide();
-		            $("#itineraryCount").html(counter);
                     $(divId).append(
 		            	"<div class=\"row\" id=\"round" + counter + "\">" +
 		            		"<div class=\"col-md-12 text-left\">" +
