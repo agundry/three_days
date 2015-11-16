@@ -53,49 +53,49 @@ function three_new_places(divId, category){
 		            	"<div class=\"row\" id=\"round" + counter + "\">" +
 		            		"<div class=\"col-md-12 text-left\">" +
 		            			"<div class=\"col-md-4 bg-hover\" data-name=\""+ data['businesses'][0]['name'] + "\"data-yelpurl=\""+ data['businesses'][0]['url'] + "\"data-imageurl=\""+ data['businesses'][0]['image_url'] + "\"data-category=\"" + data['businesses'][0]['categories'][0][1] +"\">" +
-					            	"<a class=\"place-box\" href=\"" + data['businesses'][0]['url'] + "\">" +
-						            	"<figure><img src=\"" + data['businesses'][0]['image_url'] + "\" alt=\"yelp image\" class=\"img responsive\"></figure>" +
-						            	"<figcaption>" +
-						            	"<h3>" + data['businesses'][0]['name'] + "</h3>" +
-						            	"<p>Category: " + data['businesses'][0]['categories'][0][1] + "</p>" +
-						            	"<p class=\"description\">" + data['businesses'][0]['snippet_text'] + "</p>" +
-						            	"</figcaption>" +
-					            	"</a>" +
-					            	"<div class=\"text-center\">" +
-			                            "<button class=\"button choiceButton\" style=\"color: black;\">" +
-			                                "<span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>" +
-			                            "</button>" +
-		                        	"</div>" +
+		                        	"<div class=\"outer-box\">" +
+                            			"<a class=\"place-box choiceButton\" href=\"#\">" +
+			                                "<figure class=\"yelp-img\"><img src="+data['businesses'][0]['image_url']+" alt=\"yelp image\" class=\"img-responsive\"></figure>" +
+			                                "<figcaption>" +
+			                                    "<h3>"+data['businesses'][0]['name']+"</h3>" +
+			                                    "<p><i class=\"fa fa-tag\"></i>"+data['businesses'][0]['categories'][0][1] +"</p>" +
+			                                    "<p class=\"description\">"+data['businesses'][0]['snippet_text']+"</p>" +
+			                                "</figcaption>" +
+			                            "</a>" +
+			                            "<div class=\"info-icon text-right\">" +
+			                                "<a href="+data['businesses'][0]['url']+">or find out more <i class=\"fa fa-external-link-square\"></i></a>" +
+			                            "</div>" +
+			                        "</div>" +
 				            	"</div>" +
 				            	"<div class=\"col-md-4 bg-hover\" data-name=\""+ data2['businesses'][0]['name'] + "\"data-yelpurl=\""+ data2['businesses'][0]['url'] + "\"data-imageurl=\""+ data2['businesses'][0]['image_url'] + "\"data-category=\"" + data2['businesses'][0]['categories'][0][1] + "\">" +
-					            	"<a class=\"place-box\" href=\"" + data2['businesses'][0]['url'] + "\">" +
-						            	"<figure><img src=\"" + data2['businesses'][0]['image_url'] + "\" alt=\"yelp image\" class=\"img responsive\"></figure>" +
-						            	"<figcaption>" +
-						            	"<h3>" + data2['businesses'][0]['name'] + "</h3>" +
-						            	"<p>Category: " + data2['businesses'][0]['categories'][0][1] + "</p>" +
-						            	"<p class=\"description\">" + data2['businesses'][0]['snippet_text'] + "</p>" +
-						            	"</figcaption>" +
-					            	"</a>" +
-					            	"<div class=\"text-center\">" +
-			                            "<button class=\"button choiceButton\" style=\"color: black;\">" +
-			                                "<span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>" +
-			                            "</button>" +
-		                        	"</div>" +
+					            	"<div class=\"outer-box\">" +
+                            			"<a class=\"place-box choiceButton\" href=\"#\">" +
+			                                "<figure class=\"yelp-img\"><img src="+data2['businesses'][0]['image_url']+" alt=\"yelp image\" class=\"img-responsive\"></figure>" +
+			                                "<figcaption>" +
+			                                    "<h3>"+data2['businesses'][0]['name']+"</h3>" +
+			                                    "<p><i class=\"fa fa-tag\"></i>"+data2['businesses'][0]['categories'][0][1] +"</p>" +
+			                                    "<p class=\"description\">"+data2['businesses'][0]['snippet_text']+"</p>" +
+			                                "</figcaption>" +
+			                            "</a>" +
+			                            "<div class=\"info-icon text-right\">" +
+			                                "<a href="+data2['businesses'][0]['url']+">or find out more <i class=\"fa fa-external-link-square\"></i></a>" +
+			                            "</div>" +
+			                        "</div>" +
 				            	"</div>" +
 				            	"<div class=\"col-md-4 bg-hover\" data-name=\""+ chicagojson[counter]['name'] + "\"data-yelpurl=\""+ chicagojson[counter]['url'] + "\"data-imageurl=\""+ chicagojson[counter]['image_url'] + "\"data-category=\"" + chicagojson[counter]['category'] + "\">" +
-					            	"<a class=\"place-box\" href=\"" + chicagojson[counter]['url'] + "\">" +
-						            	"<figure><img src=\"" + chicagojson[counter]['image_url'] + "\" alt=\"yelp image\" class=\"img responsive\"></figure>" +
-						            	"<figcaption>" +
-						            	"<h3>" + chicagojson[counter]['name'] + "</h3>" +
-						            	"<p>Category: " + chicagojson[counter]['category'] + "</p>" +
-						            	"<p class=\"description\">" + chicagojson[counter]['snippet_text'] + "</p>" +
-						            	"</figcaption>" +
-					            	"</a>" +
-					            	"<div class=\"text-center\">" +
-			                            "<button class=\"button choiceButton\" style=\"color: black;\">" +
-			                                "<span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>" +
-			                            "</button>" +
-		                        	"</div>" +
+		                        	"<div class=\"outer-box\">" +
+                            			"<a class=\"place-box choiceButton\" href=\"#\">" +
+			                                "<figure class=\"yelp-img\"><img src="+chicagojson[counter]['image_url']+" alt=\"yelp image\" class=\"img-responsive\"></figure>" +
+			                                "<figcaption>" +
+			                                    "<h3>"+chicagojson[counter]['name']+"</h3>" +
+			                                    "<p><i class=\"fa fa-tag\"></i>"+chicagojson[counter]['category']+"</p>" +
+			                                    "<p class=\"description\">"+chicagojson[counter]['snippet_text']+"</p>" +
+			                                "</figcaption>" +
+			                            "</a>" +
+			                            "<div class=\"info-icon text-right\">" +
+			                                "<a href="+chicagojson[counter]['url']+">or find out more <i class=\"fa fa-external-link-square\"></i></a>" +
+			                            "</div>" +
+			                        "</div>" +
 				            	"</div>" +
 			            	"</div>" +
 		            	"</div>")

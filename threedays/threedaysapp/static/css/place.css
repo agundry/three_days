@@ -93,3 +93,7 @@ figure {
 .info-icon a:hover {
     color: grey;
 }
+
+.outer-box:hover .info-icon{
+    display: block;
+}
