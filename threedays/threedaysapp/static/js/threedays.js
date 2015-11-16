@@ -1,4 +1,5 @@
 $(document).ready( function() {
+	$('.itinerary').hide();
 
 	$(document).on('click', ".choiceButton", function() {
 		counter++;
@@ -8,12 +9,13 @@ $(document).ready( function() {
 		if (counter <= 9) {
 			three_new_places("#responseContainer", parentData.category);
 		}
-		add_to_itinerary(parentData.name, parentData.yelpurl, parentData.imageurl);
+		add_to_itinerary(parentData.name, parentData.yelpurl, parentData.imageurl, parentData.category);
 	});
 
 	$(document).on('click', "#itineraryButton", function() {
 		show_itinerary();
 	});
+
 });
 
 var chicagojson = {"0":{"name":"The Cloud Gate aka The Bean", "url":"http://www.yelp.com/biz/the-cloud-gate-aka-the-bean-chicago", "image_url":"http://s3-media4.fl.yelpcdn.com/bphoto/uFT4lrX-omWGu5Uifguzlw/ms.jpg", "snippet_text":"I came to see the Bean, I touched the Bean, I took picture with the Bean, I walked under the Bean, and I walked out like a champ.\n\nBelieve it or not, but...", "category":"landmarks"},
@@ -31,7 +33,7 @@ var chicagojson = {"0":{"name":"The Cloud Gate aka The Bean", "url":"http://www.
 var itineraryJson = {};
 var categoryDict = {};
 
-
+var alternate = false;
 var counter = 0;
 var offset = 2
 
@@ -105,13 +107,37 @@ function three_new_places(divId, category){
     })
 }
 
-function add_to_itinerary(name, yelp_url, image_url) {
-	itineraryJson[counter.toString()] = {"name" : name, "yelp_url" : yelp_url, "image_url" : image_url};
+function add_to_itinerary(name, yelp_url, image_url, category) {
+	itineraryJson[counter.toString()] = {"name" : name, "yelp_url" : yelp_url, "image_url" : image_url, "category" : category};
 	console.log(itineraryJson);
 }
 
 function show_itinerary() {
+	alternate = !alternate;
 	$.each(itineraryJson, function(key, val) {
 		console.log(val.name);
+		$("#itineraryRow").append(
+			"<div class=\"col-md-3 text-center box\">" +
+                        "<figure class=\"yelp-img\"><img src=\""+val.image_url+"\" alt=\"yelp image\" class=\"img-responsive\"></figure>" +
+                        "<figcaption>" +
+                            "<h3 class=\"it-name\">"+val.name+"</h3>" +
+                            "<p class=\"it-cat\"><i class=\"fa fa-tag\"></i> "+val.category+"</p>" +
+                            "<p class=\"description\">snippet_text</p>" +
+                        "</figcaption>" +
+                        "<div class=\"info-icon text-right\">" +
+                            "<a href=\""+val.yelp_url+"\">more here <i class=\"fa fa-external-link-square\"></i></a>" +
+                        "</div>" +
+                    "</div>"
+			)
 	});
+
+	if (alternate) {
+		$(".itinerary").show();
+		$("#round" + counter).hide();
+	}
+	else {
+		$(".itinerary").hide();
+		$("#itineraryRow").empty();
+		$("#round" + counter).show();
+	}
 }
