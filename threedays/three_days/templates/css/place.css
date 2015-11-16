@@ -17,7 +17,7 @@ figure {
 
 .description {
     font-size: 1em;
-    margin-top: -1em;
+    margin: -1em 0 1em 0;
 }
 
 .place-box {
@@ -92,4 +92,41 @@ figure {
 
 .info-icon a:hover {
     color: grey;
+}
+
+.outer-box:hover .info-icon{
+    display: block;
+}
+
+.itinerary {
+    color: black;
+    background-color: #99bcdb;
+    padding: 2em;
+    margin-top: -2em;
+    border-radius: 1em;
+    font-size: 80%;
+}
+
+.itinerary em {
+    color: #b7337a;
+}
+
+.itinerary .box {
+    background-color: white;
+    border-radius: 1em;
+    min-width: 30%;
+    margin: 0.8em 1.6em;
+}
+
+.it-name {
+    margin-bottom: 0.2em;
+}
+
+.it-cat {
+    font-size: 1.5em;
+}
+
+.itinerary .info-icon {
+    display: block;
+    font-size: 1.2em;
 }

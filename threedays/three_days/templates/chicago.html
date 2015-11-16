@@ -1,4 +1,4 @@
-{% load staticfiles %}
+<!-- {% load staticfiles %} -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,16 +16,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link href="{% static "css/layout.css" %}" rel="stylesheet">
-    <link href="{% static "css/place.css" %}" rel="stylesheet">
-    <link href="{% static "css/font-awesome.css" %}" rel="stylesheet">
+    <link href="css/layout.css"rel="stylesheet">
+    <link href="css/place.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Dosis:400,300,500,600,700,200,800' rel='stylesheet' type='text/css'>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="{% static "js/threedays.js" %}"></script>
+    <script src="js/threedays.js"></script>
 
 </head>
 
@@ -69,6 +69,49 @@
                 <button class="btn btn-primary" type="button" id="itineraryButton">
                     <i class="fa fa-calendar-check-o"></i> Show Itinerary <span class="badge" id="itineraryCount">0</span>
                 </button>
+            </div>
+            <div class="itinerary">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2>Places you have <em>liked</em> so far:</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 text-center box">
+                        <figure class="yelp-img"><img src="{{ businesses.0.image_url }}" alt="yelp image" class="img-responsive"></figure>
+                        <figcaption>
+                            <h3 class="it-name">name</h3>
+                            <p class="it-cat"><i class="fa fa-tag"></i> category</p>
+                            <p class="description">snippet_text</p>
+                        </figcaption>
+                        <div class="info-icon text-right">
+                            <a href="{{ businesses.1.url }}">more here <i class="fa fa-external-link-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center box">
+                        <figure class="yelp-img"><img src="{{ businesses.0.image_url }}" alt="yelp image" class="img-responsive"></figure>
+                        <figcaption>
+                            <h3 class="it-name">name</h3>
+                            <p class="it-cat"><i class="fa fa-tag"></i> category</p>
+                            <p class="description">snippet_text</p>
+                        </figcaption>
+                        <div class="info-icon text-right">
+                            <a href="{{ businesses.1.url }}">more here <i class="fa fa-external-link-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center box">
+                        <figure class="yelp-img"><img src="{{ businesses.0.image_url }}" alt="yelp image" class="img-responsive"></figure>
+                        <figcaption>
+                            <h3 class="it-name">name</h3>
+                            <p class="it-cat"><i class="fa fa-tag"></i> category</p>
+                            <p class="description">snippet_text</p>
+                        </figcaption>
+                        <div class="info-icon text-right">
+                            <a href="{{ businesses.1.url }}">more here <i class="fa fa-external-link-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="row" id="round0">
                 <div class="col-md-12 text-left">
