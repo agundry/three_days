@@ -4,6 +4,11 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+ .place-container {
+    background: url(../img/blur-background.jpg) center fixed;
+    background-size: cover;
+ }
+
 figure {
     margin: 10px;
 }
@@ -25,6 +30,10 @@ figure {
     width: 230px;
     text-align: center;
     margin-bottom: 10px;
+}
+
+.bg-hover {
+    background-color: rgba(255,255,255,0.5);
 }
 
 .bg-hover:hover {
@@ -86,24 +95,23 @@ figure {
 }
 
 .info-icon a {
-    color: black;
+    color: grey;
     transition: 0.5s;
 }
 
 .info-icon a:hover {
-    color: grey;
+    opacity: 0.8;
 }
 
-.outer-box:hover .info-icon{
+.bg-hover:hover .info-icon{
     display: block;
 }
 
 .itinerary {
     color: black;
-    background-color: #99bcdb;
-    padding: 2em;
-    margin-top: -2em;
-    border-radius: 1em;
+    background-color: rgba(255,255,255,0.5);
+    padding: 1.5em;
+    margin: 2em 0;
     font-size: 80%;
 }
 
@@ -111,22 +119,26 @@ figure {
     color: #b7337a;
 }
 
-.itinerary .box {
-    background-color: white;
-    border-radius: 1em;
-    min-width: 30%;
-    margin: 0.8em 1.6em;
+ul {
+  list-style-type: none;
 }
 
-.it-name {
-    margin-bottom: 0.2em;
+.flex-box {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 0;
 }
 
-.it-cat {
-    font-size: 1.5em;
+.flex-item {
+    flex-basis: 100px;
+    margin: 0 8px;
 }
 
 .itinerary .info-icon {
     display: block;
     font-size: 1.2em;
 }
+
