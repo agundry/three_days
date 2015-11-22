@@ -7,7 +7,8 @@ $(document).ready( function() {
 		var parentData = $(this).parent().parent().get(0).dataset;
 		categoryDict[parentData.category] = (categoryDict[parentData.category] || 0) + 1;
 		if (counter <= 9) {
-			three_new_places("#responseContainer", parentData.category);
+			var newCat = category_picker(parentData.category);
+			three_new_places("#responseContainer", newCat);
 		}
 		add_to_itinerary(parentData.name, parentData.yelpurl, parentData.imageurl, parentData.category);
 	});
@@ -30,24 +31,100 @@ var chicagojson = {"0":{"name":"The Cloud Gate aka The Bean", "url":"http://www.
 "9":{"name": "Oak Street Beach", "url":"http://www.yelp.com/biz/oak-street-beach-chicago", "image_url":"http://s3-media2.fl.yelpcdn.com/bphoto/R6nqyPnlGH-SP7pKlbLO6w/ms.jpg", "snippet_text": "Two words: \"man candy\"\n\nOak street beach is quite popular for triathletes to train for the swimming portion of their race. Well, the stretch of Lake between...", "category":"beaches"},
 }
 
+var categoryMap = {"nightlife": ['bars', 'nightlife'],
+              "restaurants": ['turkish','spanish','restaurants','portuguese','polish','mideastern','mexican','mediterranean','malaysian', 'african', 'arabian', 'belgian', 'brazilian', 'caribbean', 'chinese', 'donburi', 'food', 'german', 'french', 'gourmet', 'italian', 'japanese', 'latin'],
+              "kidfriendly": ['pets','artsandcrafts', 'education'],
+              "outdoor": ['sportgoods','parks','active', 'bicycles', 'diving', 'fitness'],
+              "tourist": ['historicaltours', 'landmarks', 'localflavor'],
+              "budget": ['homeandgarden'],
+              "entertainment": ['shopping', 'shoppingcenters','massmedia', 'festivals', 'stadiumsarenas', 'theater'],
+              "art": ['photographers','arts', 'fashion', 'museums'],
+              "ignore": ['specialtyschools','realestate','publicservicesgovt','professional','physicians','petservices','nonprofit','localservices', 'auto', 'c_and_mh', 'dentalhygienests', 'dentists', 'diagnosticservices', 'eventservices', 'financialservices', 'flowers', 'hair', 'hairremoval', 'health', 'homeservices', 'itservices', 'lawyers']}
+
+var prefDict = {'nightlife': 0, 'restaurants': 0, 'kidfriendly': 0, 'outdoor': 0, 'tourist': 0, 'budget': 0, 'entertainment': 0, 'art': 0};
+var max_category = "";
+var max_rank = 0;
+
 var itineraryJson = {};
 var categoryDict = {};
 
 var alternate = false;
 var counter = 0;
-var offset = 2
+var offset = 2;
+
+function category_picker(picked_category) {
+	var chosen_category;
+	for (var cat in categoryMap) {
+		if ($.inArray(picked_category, categoryMap[cat]) != -1) {
+			chosen_category = cat;
+			break;
+		}
+	}
+
+	switch(chosen_category) {
+	    case 'nightlife':
+	        prefDict['entertainment'] += 1;
+			prefDict['nightlife'] += 1;
+			if (prefDict['kidfriendly'] > 0)
+				prefDict['kidfriendly'] -= 1;
+	        break;
+	    case 'restaurants':
+	        prefDict['restaurants'] += 1;
+	        break;
+	    case 'kidfriendly':
+	        prefDict['kidfriendly'] += 1;
+			prefDict['tourist'] += 1;
+	        if (prefDict['nightlife'] > 0)
+	            prefDict['nightlife'] -= 1;
+	        break;
+	    case 'outdoor':
+	        prefDict['outdoor'] += 1;
+	        break;
+	    case 'tourist':
+			prefDict['tourist'] += 1;
+			prefDict['art'] += 1;
+			break;
+		case 'entertainment':
+			prefDict['entertainment'] += 1;
+			break;
+		case 'art':
+			prefDict['art'] += 1;
+			prefDict['tourist'] += 1;
+			break;
+	    default:
+	        console.log("not found");
+	}
+
+	for (var cat2 in prefDict) {
+		if (prefDict[cat2] > max_rank) {
+			max_rank = prefDict[cat2];
+			max_category = cat2;
+			break;
+		}
+		else if (prefDict[cat2] == max_rank && cat2 != max_category) {
+			max_rank = prefDict[cat2];
+			max_category = cat2;
+		}
+    }
+
+    var index = Math.floor(Math.random() * categoryMap[max_category].length);
+	var next_category = categoryMap[max_category][index];
+	console.log("the user's max category is " + max_category + " with the rank of " + max_rank);
+	console.log("next category is " + next_category);
+	return next_category;
+}
 
 function three_new_places(divId, category){
 	offset+=2;
     $.ajax({
         url: "http://127.0.0.1:8000/chooseOne/?location=Chicago, IL&offset="+(categoryDict[category] || 0).toString() +"&category_filter="+category,
         success : function(data) {
-            console.log("requested access complete");
+            //console.log("requested access complete");
             // console.log(data);
             $.ajax({
         		url: "http://127.0.0.1:8000/chooseOne/?location=Chicago, IL&offset="+offset,
 		        success : function(data2) {
-		            console.log("requested access complete");
+		            //console.log("requested access complete");
 		            // console.log(data2);
 		            // THIS WILL HIDE DIVS ITERATIVELY
 		            $("#round" + (counter -1)).hide();
