@@ -2,6 +2,7 @@ $(document).ready( function() {
 	$('.itinerary').hide();
 
 	$(document).on('click', ".choiceButton", function() {
+		$(".itinerary").show();
 		counter++;
 		$("#itineraryCount").html(counter);
 		var parentData = $(this).parent().parent().get(0).dataset;
@@ -9,6 +10,9 @@ $(document).ready( function() {
 		if (counter <= 9) {
 			var newCat = category_picker(parentData.category);
 			three_new_places("#responseContainer", newCat);
+		}
+		if (counter > 9) {
+			$("#round" + (counter - 1)).empty();
 		}
 		add_to_itinerary(parentData.name, parentData.yelpurl, parentData.imageurl, parentData.category);
 	});
@@ -38,7 +42,7 @@ var categoryMap = {"nightlife": ['bars', 'nightlife'],
               "tourist": ['historicaltours', 'landmarks', 'localflavor'],
               "budget": ['homeandgarden'],
               "entertainment": ['shopping', 'shoppingcenters','massmedia', 'festivals', 'stadiumsarenas', 'theater'],
-              "art": ['photographers','arts', 'fashion', 'museums'],
+              "art": ['arts', 'fashion', 'museums'],
               "ignore": ['specialtyschools','realestate','publicservicesgovt','professional','physicians','petservices','nonprofit','localservices', 'auto', 'c_and_mh', 'dentalhygienests', 'dentists', 'diagnosticservices', 'eventservices', 'financialservices', 'flowers', 'hair', 'hairremoval', 'health', 'homeservices', 'itservices', 'lawyers']}
 
 var prefDict = {'nightlife': 0, 'restaurants': 0, 'kidfriendly': 0, 'outdoor': 0, 'tourist': 0, 'budget': 0, 'entertainment': 0, 'art': 0};
@@ -186,35 +190,42 @@ function three_new_places(divId, category){
 
 function add_to_itinerary(name, yelp_url, image_url, category) {
 	itineraryJson[counter.toString()] = {"name" : name, "yelp_url" : yelp_url, "image_url" : image_url, "category" : category};
-	console.log(itineraryJson);
+	$("#itineraryRow").append(
+		"<li class=\"flex-item\">" +
+			"<a href=\""+yelp_url+"\">" +
+				"<img src=\""+image_url+"\" class=\"img-responsive\">" +
+		"</a>" +
+	"</li>"
+		);
 }
 
-function show_itinerary() {
-	alternate = !alternate;
-	$.each(itineraryJson, function(key, val) {
-		console.log(val.name);
-		$("#itineraryRow").append(
-			"<div class=\"col-md-3 text-center box\">" +
-                        "<figure class=\"yelp-img\"><img src=\""+val.image_url+"\" alt=\"yelp image\" class=\"img-responsive\"></figure>" +
-                        "<figcaption>" +
-                            "<h3 class=\"it-name\">"+val.name+"</h3>" +
-                            "<p class=\"it-cat\"><i class=\"fa fa-tag\"></i> "+val.category+"</p>" +
-                            "<p class=\"description\">snippet_text</p>" +
-                        "</figcaption>" +
-                        "<div class=\"info-icon text-right\">" +
-                            "<a href=\""+val.yelp_url+"\">more here <i class=\"fa fa-external-link-square\"></i></a>" +
-                        "</div>" +
-                    "</div>"
-			)
-	});
+// This is deprecated, leaving in case we need it
+// function show_itinerary() {
+// 	alternate = !alternate;
+// 	$.each(itineraryJson, function(key, val) {
+// 		console.log(val.name);
+// 		$("#itineraryRow").append(
+// 			"<div class=\"col-md-3 text-center box\">" +
+//                         "<figure class=\"yelp-img\"><img src=\""+val.image_url+"\" alt=\"yelp image\" class=\"img-responsive\"></figure>" +
+//                         "<figcaption>" +
+//                             "<h3 class=\"it-name\">"+val.name+"</h3>" +
+//                             "<p class=\"it-cat\"><i class=\"fa fa-tag\"></i> "+val.category+"</p>" +
+//                             "<p class=\"description\">snippet_text</p>" +
+//                         "</figcaption>" +
+//                         "<div class=\"info-icon text-right\">" +
+//                             "<a href=\""+val.yelp_url+"\">more here <i class=\"fa fa-external-link-square\"></i></a>" +
+//                         "</div>" +
+//                     "</div>"
+// 			)
+// 	});
 
-	if (alternate) {
-		$(".itinerary").show();
-		$("#round" + counter).hide();
-	}
-	else {
-		$(".itinerary").hide();
-		$("#itineraryRow").empty();
-		$("#round" + counter).show();
-	}
-}
+// 	if (alternate) {
+// 		$(".itinerary").show();
+// 		$("#round" + counter).hide();
+// 	}
+// 	else {
+// 		$(".itinerary").hide();
+// 		$("#itineraryRow").empty();
+// 		$("#round" + counter).show();
+// 	}
+// }
