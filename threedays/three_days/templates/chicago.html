@@ -16,16 +16,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link href="css/layout.css" rel="stylesheet">
-    <link href="css/place.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="{% static "css/layout.css" %}" rel="stylesheet">
+    <link href="{% static "css/place.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.css" %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Dosis:400,300,500,600,700,200,800' rel='stylesheet' type='text/css'>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="js/threedays.js"></script>
+    <script src="{% static "js/threedays.js" %}"></script>
 
 </head>
 
@@ -81,7 +81,7 @@
                         <ul id="itineraryRow" class="flex-box">
 
                         <!-- Itinerary gets generated here -->
-                            <li class="flex-item"><a href="http://www.yelp.com/biz/art-institute-of-chicago-chicago-3"><img src="http://s3-media2.fl.yelpcdn.com/bphoto/yGNhPzcjdTBiZEd2s6HEHg/ls.jpg" class="img-responsive"></a></li>
+                            <!--<li class="flex-item"><a href="http://www.yelp.com/biz/art-institute-of-chicago-chicago-3"><img src="http://s3-media2.fl.yelpcdn.com/bphoto/yGNhPzcjdTBiZEd2s6HEHg/ls.jpg" class="img-responsive"></a></li>-->
 
                         </ul>
                     </div>
