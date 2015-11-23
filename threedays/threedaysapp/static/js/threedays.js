@@ -9,6 +9,7 @@ $(document).ready( function() {
 		categoryDict[parentData.category] = (categoryDict[parentData.category] || 0) + 1;
 		if (counter <= 9) {
 			var newCat = category_picker(parentData.category);
+			categoryDict[newCat] = (categoryDict[newCat] || 0) + 1;
 			three_new_places("#responseContainer", newCat);
 		}
 		if (counter > 9) {
