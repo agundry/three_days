@@ -4,8 +4,25 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+.profile {
+    height: auto;
+    margin-top: 100px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.profiles {
+    background-color: rgba(255,255,255,0.5);
+    padding-top: 2em;
+}
+
+.profiles label {
+
+}
  .place-container {
-    background: url(../img/blur-background.jpg) center fixed;
+    background: url(../img/blur-background.jpg) top center fixed;
     background-size: cover;
  }
 
@@ -57,7 +74,7 @@ figure {
     -o-background-size: cover;
 }
 
-.place .place-body .brand-heading {
+.brand-heading {
     color: black;
 }
 
@@ -68,7 +85,7 @@ figure {
         padding: 0;
     }
 
-    .place .place-body .brand-heading {
+    .brand-heading {
         font-size: 3em;
     }
 
