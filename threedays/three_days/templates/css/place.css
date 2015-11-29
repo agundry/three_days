@@ -159,3 +159,10 @@ ul {
     font-size: 1.2em;
 }
 
+.result-description {
+    margin-top: 2em;
+}
+.result-description h3, .result-description h4 {
+    text-transform: none;
+    font-weight: 400;
+}
