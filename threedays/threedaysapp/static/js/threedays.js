@@ -14,6 +14,7 @@ $(document).ready( function() {
 		}
 		if (counter > 9) {
 			$("#round" + (counter - 1)).empty();
+			console.log(get_top_two_cat());
 		}
 		add_to_itinerary(parentData.name, parentData.yelpurl, parentData.imageurl, parentData.category);
 	});
@@ -198,6 +199,27 @@ function add_to_itinerary(name, yelp_url, image_url, category) {
 		"</a>" +
 	"</li>"
 		);
+}
+
+function get_top_two_cat() {
+	var max_cat = '',
+		max_val = 0,
+		second_cat = '',
+		second_val = 0;
+	for (var key in prefDict){
+		if (prefDict[key] > max_val) {
+			max_val = prefDict[key];
+			max_cat = key;
+		}
+	}
+	for (var key in prefDict){
+		if (prefDict[key] > second_val && key != max_cat) {
+			second_val = prefDict[key];
+			second_cat = key;
+		}
+	}
+
+	return [max_cat, max_val, second_cat, second_val];
 }
 
 // This is deprecated, leaving in case we need it
