@@ -1,5 +1,7 @@
 $(document).ready( function() {
 	$('.itinerary').hide();
+	$('.profiles').hide();
+	$('.result').hide();
 
 	$(document).on('click', ".choiceButton", function() {
 		$(".itinerary").show();
@@ -14,6 +16,7 @@ $(document).ready( function() {
 		}
 		if (counter > 9) {
 			$("#round" + (counter - 1)).empty();
+			show_results();
 		}
 		add_to_itinerary(parentData.name, parentData.yelpurl, parentData.imageurl, parentData.category);
 	});
@@ -35,6 +38,14 @@ var chicagojson = {"0":{"name":"The Cloud Gate aka The Bean", "url":"http://www.
 "8":{"name": "Billy Goat Tavern", "url":"http://www.yelp.com/biz/billy-goat-tavern-chicago", "image_url":"http://s3-media3.fl.yelpcdn.com/bphoto/12aLcqIdb6cgFkwMcDfs3w/ms.jpg", "snippet_text": "You've probably heard of the Billy Goat Tavern before. You may not, but this greasy spoon has a wild history.\n\nThere isn't much space, but the restaurant...", "category":"divebars"},
 "9":{"name": "Oak Street Beach", "url":"http://www.yelp.com/biz/oak-street-beach-chicago", "image_url":"http://s3-media2.fl.yelpcdn.com/bphoto/R6nqyPnlGH-SP7pKlbLO6w/ms.jpg", "snippet_text": "Two words: \"man candy\"\n\nOak street beach is quite popular for triathletes to train for the swimming portion of their race. Well, the stretch of Lake between...", "category":"beaches"},
 }
+
+var resultsMap = {"nightlife": 'You like to go hard at night. That’s dope.',
+              "restaurants": 'Beautiful food for a beautiful soul, what’s your flavor?',
+              "kidfriendly": 'Why not enjoy activities with the whole family, no need to leave the kids at home this time.',
+              "outdoor": 'Seems like somebody couldn’t pay you to sit inside another minute.',
+              "tourist": 'You seem to love iconic places, but who could blame you?',
+              "entertainment": 'Nothing wrong with wanting to be entertained, hope you like the show.',
+              "art": 'Classy and sophisticated, you get what the fine arts are all about.'}
 
 var categoryMap = {"nightlife": ['bars', 'nightlife'],
               "restaurants": ['turkish','spanish','restaurants','portuguese','polish','mideastern','mexican','mediterranean','malaysian', 'african', 'arabian', 'belgian', 'brazilian', 'caribbean', 'chinese', 'donburi', 'food', 'german', 'french', 'gourmet', 'italian', 'japanese', 'latin'],
@@ -114,8 +125,8 @@ function category_picker(picked_category) {
 
     var index = Math.floor(Math.random() * categoryMap[max_category].length);
 	var next_category = categoryMap[max_category][index];
-	console.log("the user's max category is " + max_category + " with the rank of " + max_rank);
-	console.log("next category is " + next_category);
+	//console.log("the user's max category is " + max_category + " with the rank of " + max_rank);
+	//console.log("next category is " + next_category);
 	return next_category;
 }
 
@@ -189,6 +200,67 @@ function three_new_places(divId, category){
     })
 }
 
+function new_result(divId, category1, category2, category3){
+	offset+=2;
+	$('.result-suggestions').empty();
+    $.ajax({
+        url: "http://127.0.0.1:8000/chooseOne/?location=Chicago, IL&offset="+(categoryDict[category1] || 0).toString() +"&category_filter="+category1,
+        success : function(data) {
+        	$.ajax({
+        		url: "http://127.0.0.1:8000/chooseOne/?location=Chicago, IL&offset="+(categoryDict[category2] || 0).toString() +"&category_filter="+category2,
+        		success : function(data2) {
+        			$.ajax({
+        				url: "http://127.0.0.1:8000/chooseOne/?location=Chicago, IL&offset="+(categoryDict[category3] || 0).toString() +"&category_filter="+category3,
+        				success : function(data3) {
+				            $(divId).append(
+					            "<div class=\"col-md-4\">" +
+					                "<figure class=\"yelp-img\">" +
+					                    "<img src=\""+data['businesses'][0]['image_url']+"\" alt=\"yelp image\" class=\"img-responsive\">" +
+					                "</figure>" +
+					                "<figcaption>" +
+					                    "<h3>"+data['businesses'][0]['name']+"</h3>" +
+					                    "<p><i class=\"fa fa-tag\"></i>"+data['businesses'][0]['categories'][0][1]+"</p>" +
+					                    "<p class=\"description\">"+data['businesses'][0]['snippet_text']+"</p>" +
+					                "</figcaption>" +
+					                "<div class=\"info-icon othericon text-right\">" +
+			                                "<a href="+data['businesses'][0]['url']+">or find out more <i class=\"fa fa-external-link-square\"></i></a>" +
+			                        "</div>" +
+					            "</div>" +
+					            "<div class=\"col-md-4\">" +
+					                "<figure class=\"yelp-img\">" +
+					                    "<img src=\""+data2['businesses'][0]['image_url']+"\" alt=\"yelp image\" class=\"img-responsive\">" +
+					                "</figure>" +
+					                "<figcaption>" +
+					                    "<h3>"+data2['businesses'][0]['name']+"</h3>" +
+					                    "<p><i class=\"fa fa-tag\"></i>"+data2['businesses'][0]['categories'][0][1]+"</p>" +
+					                    "<p class=\"description\">"+data2['businesses'][0]['snippet_text']+"</p>" +
+					                "</figcaption>" +
+					                "<div class=\"info-icon othericon text-right\">" +
+			                                "<a href="+data2['businesses'][0]['url']+">or find out more <i class=\"fa fa-external-link-square\"></i></a>" +
+			                        "</div>" +
+					            "</div>" +
+					            "<div class=\"col-md-4\">" +
+					                "<figure class=\"yelp-img\">" +
+					                    "<img src=\""+data3['businesses'][0]['image_url']+"\" alt=\"yelp image\" class=\"img-responsive\">" +
+					                "</figure>" +
+					                "<figcaption>" +
+					                    "<h3>"+data3['businesses'][0]['name']+"</h3>" +
+					                    "<p><i class=\"fa fa-tag\"></i>"+data3['businesses'][0]['categories'][0][1]+"</p>" +
+					                    "<p class=\"description\">"+data3['businesses'][0]['snippet_text']+"</p>" +
+					                "</figcaption>" +
+					                "<div class=\"info-icon othericon text-right\">" +
+			                                "<a href="+data3['businesses'][0]['url']+">or find out more <i class=\"fa fa-external-link-square\"></i></a>" +
+			                        "</div>" +
+					            "</div>"
+				            );
+						}
+					})
+				}
+			})
+        }
+    })
+}
+
 function add_to_itinerary(name, yelp_url, image_url, category) {
 	itineraryJson[counter.toString()] = {"name" : name, "yelp_url" : yelp_url, "image_url" : image_url, "category" : category};
 	$("#itineraryRow").append(
@@ -198,35 +270,59 @@ function add_to_itinerary(name, yelp_url, image_url, category) {
 		"</a>" +
 	"</li>"
 		);
+	$("#itineraryRow2").append(
+		"<li class=\"flex-item\">" +
+			"<a href=\""+yelp_url+"\">" +
+				"<img src=\""+image_url+"\" class=\"img-responsive\">" +
+		"</a>" +
+	"</li>"
+		);
 }
 
-// This is deprecated, leaving in case we need it
-// function show_itinerary() {
-// 	alternate = !alternate;
-// 	$.each(itineraryJson, function(key, val) {
-// 		console.log(val.name);
-// 		$("#itineraryRow").append(
-// 			"<div class=\"col-md-3 text-center box\">" +
-//                         "<figure class=\"yelp-img\"><img src=\""+val.image_url+"\" alt=\"yelp image\" class=\"img-responsive\"></figure>" +
-//                         "<figcaption>" +
-//                             "<h3 class=\"it-name\">"+val.name+"</h3>" +
-//                             "<p class=\"it-cat\"><i class=\"fa fa-tag\"></i> "+val.category+"</p>" +
-//                             "<p class=\"description\">snippet_text</p>" +
-//                         "</figcaption>" +
-//                         "<div class=\"info-icon text-right\">" +
-//                             "<a href=\""+val.yelp_url+"\">more here <i class=\"fa fa-external-link-square\"></i></a>" +
-//                         "</div>" +
-//                     "</div>"
-// 			)
-// 	});
+function get_top_two_cat() {
+	var max_cat = '',
+		max_val = 0,
+		second_cat = '',
+		second_val = 0;
+	for (var key in prefDict){
+		if (prefDict[key] > max_val) {
+			max_val = prefDict[key];
+			max_cat = key;
+		}
+	}
+	for (var key in prefDict){
+		if (prefDict[key] > second_val && key != max_cat) {
+			second_val = prefDict[key];
+			second_cat = key;
+		}
+	}
 
-// 	if (alternate) {
-// 		$(".itinerary").show();
-// 		$("#round" + counter).hide();
-// 	}
-// 	else {
-// 		$(".itinerary").hide();
-// 		$("#itineraryRow").empty();
-// 		$("#round" + counter).show();
-// 	}
-// }
+	return [max_cat, max_val, second_cat, second_val];
+}
+
+function show_results() {
+	var topTwo = get_top_two_cat();
+	$('.place').hide();
+	$('#cat1').empty();
+	$('#cat1').append(resultsMap[topTwo[0]]);
+	$('#cat2').empty();
+	$('#cat2').append(resultsMap[topTwo[2]]);
+	$('.result').show();
+
+	var index1 = Math.floor(Math.random() * categoryMap[topTwo[0]].length);
+	var first_category = categoryMap[topTwo[0]][index1];
+	categoryDict[first_category] = (categoryDict[first_category] || 0) + 1;
+	var index2 = Math.floor(Math.random() * categoryMap[topTwo[0]].length);
+	while (index2 == index1) {
+		index2 = Math.floor(Math.random() * categoryMap[topTwo[0]].length);
+	}
+	var second_category = categoryMap[topTwo[0]][index2];
+	categoryDict[second_category] = (categoryDict[second_category] || 0) + 1;
+	var index3 = Math.floor(Math.random() * categoryMap[topTwo[2]].length);
+	var third_category = categoryMap[topTwo[2]][index3];
+	categoryDict[third_category] = (categoryDict[third_category] || 0) + 1;
+	console.log(first_category + " " + second_category + " " + third_category);
+
+	new_result(".result-suggestions", first_category, second_category, third_category);
+
+}

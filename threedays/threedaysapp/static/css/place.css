@@ -4,10 +4,27 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-.place-container {
-    background: url(../img/blur-background.jpg) center fixed;
+.profile {
+    height: auto;
+    margin-top: 100px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
     background-size: cover;
+    -o-background-size: cover;
 }
+
+.profiles {
+    background-color: rgba(255,255,255,0.5);
+    padding-top: 2em;
+}
+
+.profiles label {
+
+}
+ .place-container {
+    background: url(../img/blur-background.jpg) top center fixed;
+    background-size: cover;
+ }
 
 figure {
     margin: 10px;
@@ -57,7 +74,7 @@ figure {
     -o-background-size: cover;
 }
 
-.place .place-body .brand-heading {
+.brand-heading {
     color: black;
 }
 
@@ -68,7 +85,7 @@ figure {
         padding: 0;
     }
 
-    .place .place-body .brand-heading {
+    .brand-heading {
         font-size: 3em;
     }
 
@@ -88,9 +105,6 @@ figure {
 .info-icon {
     text-align: right;
     display: none;
-}
-
-.info-icon {
     margin: 10px 0;
 }
 
@@ -107,7 +121,7 @@ figure {
     display: block;
 }
 
-outer-box:hover .info-icon{
+.othericon{
     display: block;
 }
 
@@ -124,24 +138,32 @@ outer-box:hover .info-icon{
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .flex-box {
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 0;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 0;
 }
 
 .flex-item {
     flex-basis: 100px;
-    margin: -2px 5px;
+    margin: 0 5px;
 }
 
 .itinerary .info-icon {
     display: block;
     font-size: 1.2em;
+}
+
+.result-description {
+    margin-top: 2em;
+}
+.result-description h3, .result-description h4 {
+    text-transform: none;
+    font-weight: 400;
 }
